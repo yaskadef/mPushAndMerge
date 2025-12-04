@@ -12,14 +12,12 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities
     {
         public EntityData Origin { get;}
 
-        public readonly ReactiveProperty<int> Level;
         public readonly ReactiveProperty<Vector2Int> Position;
 
         public Entity(EntityData entityData)
         {
             Origin = entityData;
 
-            Level = new ReactiveProperty<int>(entityData.Level);
             Position = new ReactiveProperty<Vector2Int>(
                 new Vector2Int(
                     entityData.PositionX, 
@@ -37,7 +35,5 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities
         public EntityType EntityType => Origin.EntityType;
 
         ReadOnlyReactiveProperty<Vector2Int> IReadOnlyEntity.Position => Position;
-
-        ReadOnlyReactiveProperty<int> IReadOnlyEntity.Level => Level;
     }
 }

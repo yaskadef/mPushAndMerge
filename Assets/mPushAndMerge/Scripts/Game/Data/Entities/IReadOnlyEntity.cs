@@ -11,6 +11,5 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities
 
 
         ReadOnlyReactiveProperty<Vector2Int> Position { get; }
-        ReadOnlyReactiveProperty<int> Level { get; }
     }
 }
