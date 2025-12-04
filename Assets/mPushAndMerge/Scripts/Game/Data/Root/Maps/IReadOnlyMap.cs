@@ -3,7 +3,7 @@ using ObservableCollections;
 using System.Collections.ObjectModel;
 
 
-namespace Assets.mPushAndMerge.Scripts.Game.Data.Root.Map
+namespace Assets.mPushAndMerge.Scripts.Game.Data.Root.Maps
 {
     public interface IReadOnlyMap
     {

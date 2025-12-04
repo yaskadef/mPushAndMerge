@@ -1,4 +1,4 @@
-﻿using Assets.mPushAndMerge.Scripts.Game.Data.Root.Map;
+﻿using Assets.mPushAndMerge.Scripts.Game.Data.Root.Maps;
 using System;
 using System.Collections.Generic;
 using System.Linq;

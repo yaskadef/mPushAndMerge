@@ -14,6 +14,11 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities
 
         public readonly ReactiveProperty<Vector2Int> Position;
 
+        public int UniqueId => Origin.UniqueId;
+        public string ConfigId => Origin.ConfigId;
+        public EntityType EntityType => Origin.EntityType;
+        ReadOnlyReactiveProperty<Vector2Int> IReadOnlyEntity.Position => Position;
+
         public Entity(EntityData entityData)
         {
             Origin = entityData;
@@ -27,13 +32,5 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities
 
 
         }
-
-        public int UniqueId => Origin.UniqueId;
-
-        public string ConfigId => Origin.ConfigId;
-
-        public EntityType EntityType => Origin.EntityType;
-
-        ReadOnlyReactiveProperty<Vector2Int> IReadOnlyEntity.Position => Position;
     }
 }

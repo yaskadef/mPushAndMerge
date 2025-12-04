@@ -11,12 +11,12 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities.Mergeable
     {
         public readonly ReactiveProperty<int> Level;
 
+        ReadOnlyReactiveProperty<int> IReadOnlyMergeableEntity.Level => Level;
+
         public MergeableEntity(MergeableEntityData entityData) : base(entityData)
         {
             Level = new ReactiveProperty<int>(entityData.Level);
         }
-
-        ReadOnlyReactiveProperty<int> IReadOnlyMergeableEntity.Level => Level;
 
     }
 }

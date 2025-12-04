@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using R3;
 using System.Linq;
 
-namespace Assets.mPushAndMerge.Scripts.Game.Data.Root.Map
+namespace Assets.mPushAndMerge.Scripts.Game.Data.Root.Maps
 {
     public class Map : IReadOnlyMap
     {
         public readonly MapData Origin;
         public ObservableList<Entity> Entities = new();
+
+        public int MapId => Origin.MapId;
+        IReadOnlyObservableList<Entity> IReadOnlyMap.Entities => Entities;
 
         public Map(MapData mapData)
         {
@@ -17,10 +20,6 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Root.Map
 
             InitEntitiesList(mapData.Entities);
         }
-
-        public int MapId => Origin.MapId;
-
-        IReadOnlyObservableList<Entity> IReadOnlyMap.Entities => Entities;
 
         private void InitEntitiesList(List<EntityData> entities)
         {

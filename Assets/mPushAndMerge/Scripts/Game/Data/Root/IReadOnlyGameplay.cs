@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Assets.mPushAndMerge.Scripts.Game.Data.Root.Maps;
+using ObservableCollections;
+using R3;
 
 namespace Assets.mPushAndMerge.Scripts.Game.Data.Root
 {
     public interface IReadOnlyGameplay
     {
+        ReadOnlyReactiveProperty<int> CurrentMapId { get; }
+        IReadOnlyObservableList<Map> Maps { get; }
+
+        int CreateGlobalEntityId();
     }
 }
