@@ -17,5 +17,6 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities.Mergeable
         }
 
         ReadOnlyReactiveProperty<int> IReadOnlyMergeableEntity.Level => Level;
+
     }
 }
