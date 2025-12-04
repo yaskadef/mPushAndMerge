@@ -15,25 +15,21 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Root.Map
         {
             Origin = mapData;
 
-            FillEntitiesList(mapData.Entities);
-            SubscribeEntitiesListChange();
+            InitEntitiesList(mapData.Entities);
         }
 
         public int MapId => Origin.MapId;
 
         IReadOnlyObservableList<Entity> IReadOnlyMap.Entities => Entities;
 
-        private void FillEntitiesList(List<EntityData> entities)
+        private void InitEntitiesList(List<EntityData> entities)
         {
             entities.ForEach(
                 entityData => Entities.Add(
                     EntityFactory.Create(entityData)
                 )
             );
-        }
 
-        private void SubscribeEntitiesListChange()
-        {
             Entities.ObserveAdd().Subscribe(e =>
             {
                 var newEntity = e.Value;
