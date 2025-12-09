@@ -4,7 +4,7 @@ using R3;
 
 namespace Assets.mPushAndMerge.Scripts.Game.Data.Root
 {
-    public interface IReadOnlyGameplay
+    public interface IReadOnlyGameData
     {
         ReadOnlyReactiveProperty<int> CurrentMapId { get; }
         IReadOnlyObservableList<Map> Maps { get; }

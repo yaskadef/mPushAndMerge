@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Assets.mPushAndMerge.Scripts.Game.Data.Root
 {
-    public class GameplayData
+    public class GameData
     {
         public int GlobalEntityId { get; set; }
         public int CurrentMapId { get; set; }
