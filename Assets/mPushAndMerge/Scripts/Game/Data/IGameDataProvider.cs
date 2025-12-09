@@ -7,7 +7,7 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data
     {
         public GameDataProxy GameData { get; }
 
-        public Observable<GameDataProxy> LoadGameplayData();
+        public Observable<GameDataProxy> LoadGameData();
 
         public void SaveGameData();
         public void ResetData();

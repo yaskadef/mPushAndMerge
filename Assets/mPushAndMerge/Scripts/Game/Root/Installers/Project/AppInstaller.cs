@@ -1,4 +1,5 @@
-﻿using Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure;
+﻿using Assets.mPushAndMerge.Scripts.Game.Data;
+using Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure;
 using Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.States;
 using Assets.mPushAndMerge.Scripts.Game.UI;
 using Assets.mPushAndMerge.Scripts.Utils.Coroutines;
@@ -45,6 +46,11 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Installers.Project
         {
             Container
                 .Bind<SceneLoader>()
+                .AsSingle();
+
+            Container
+                .Bind<IGameDataProvider>()
+                .To<PlayerPrefsGameDataProvider>()
                 .AsSingle();
         }
 

@@ -15,7 +15,7 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data
         public GameDataProxy GameData { get; private set; }
         private GameData _gameDataOrigin;
 
-        public Observable<GameDataProxy> LoadGameplayData()
+        public Observable<GameDataProxy> LoadGameData()
         {
             if (PlayerPrefs.HasKey(GAME_DATA_KEY))
             {
