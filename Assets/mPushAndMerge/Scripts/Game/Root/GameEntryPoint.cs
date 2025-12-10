@@ -15,8 +15,6 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root
 
         public void Initialize()
         {
-
-
             RunGame();
         }
 
