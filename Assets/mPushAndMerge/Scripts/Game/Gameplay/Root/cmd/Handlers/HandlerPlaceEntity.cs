@@ -1,4 +1,5 @@
-﻿using Assets.mPushAndMerge.Scripts.Game.Data.Entities;
+﻿using Assets.mPushAndMerge.Scripts.Game.Data;
+using Assets.mPushAndMerge.Scripts.Game.Data.Entities;
 using Assets.mPushAndMerge.Scripts.Game.Data.Entities.Mergeable.Buildings;
 using Assets.mPushAndMerge.Scripts.Game.Data.Root;
 using Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.cmd;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.cmd.Handlers
 {
@@ -14,9 +16,9 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.cmd.Handlers
     {
         private readonly GameDataProxy _gameDataProxy;
 
-        public HandlerPlaceEntity(GameDataProxy gameDataProxy)
+        public HandlerPlaceEntity(IGameDataProvider gameDataProvider)
         {
-            _gameDataProxy = gameDataProxy;
+            _gameDataProxy = gameDataProvider.GameData;
         }
 
         public bool Handle(CmdPlaceEntity command)
@@ -41,6 +43,11 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.cmd.Handlers
             var entity = EntityFactory.Create(entityData);
 
             currentMap.Entities.Add(entity);
+
+            foreach (var ent in currentMap.Entities)
+            {
+                Debug.Log(ent.ConfigId);
+            }
 
             return true;
         }
