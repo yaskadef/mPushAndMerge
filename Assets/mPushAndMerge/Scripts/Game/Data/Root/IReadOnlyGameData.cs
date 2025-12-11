@@ -9,6 +9,8 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Root
         ReadOnlyReactiveProperty<int> CurrentMapId { get; }
         IReadOnlyObservableList<Map> Maps { get; }
 
+        Map CurrentMap { get; }
+
         int CreateGlobalEntityId();
     }
 }

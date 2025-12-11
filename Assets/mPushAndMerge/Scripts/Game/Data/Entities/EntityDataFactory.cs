@@ -1,0 +1,46 @@
+﻿using Assets.mPushAndMerge.Scripts.Game.Data.Entities.Mergeable.Buildings;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities
+{
+    public static class EntityDataFactory
+    {
+        public static T Create<T>(
+            EntityType entityType, 
+            string configId, 
+            int posX, 
+            int posY, 
+            int lvl = 1) where T : EntityData, new()
+        {
+            var entityData = new T()
+            {
+                EntityType = entityType,
+                ConfigId = configId,
+                PositionX = posX,
+                PositionY = posY,
+            };
+
+            switch (entityData)
+            {
+                case BuildingEntityData buildingEntityData:
+                    UpdateBuildingEntity(buildingEntityData, lvl);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+
+            return entityData;
+        }
+
+        private static void UpdateBuildingEntity(
+            BuildingEntityData entityData, 
+            int lvl) 
+        {
+            entityData.Level = lvl;
+        }
+    }
+}

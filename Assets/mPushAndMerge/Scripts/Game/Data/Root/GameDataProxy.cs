@@ -16,9 +16,29 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Root
 
         IReadOnlyObservableList<Map> IReadOnlyGameData.Maps => Maps;
 
+        public Map CurrentMap
+        {
+            get
+            {
+                if(_currentMap != null) return _currentMap;
+                else
+                {
+                    _currentMap = Maps.FirstOrDefault(m => m.MapId == CurrentMapId.Value);
+                    return _currentMap;
+                }
+            }
+            private set
+            {
+                _currentMap = value;
+            }
+        }
+
+        private Map _currentMap = null;
+
         public GameDataProxy(GameData gameplayData)
         {
             Origin = gameplayData;
+
             CurrentMapId = new ReactiveProperty<int>(gameplayData.CurrentMapId);
 
             InitMaps(gameplayData.Maps);
@@ -31,6 +51,8 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Root
 
         private void InitMaps(List<MapData> maps)
         {
+            CurrentMapId.Subscribe(_ => CurrentMap = null);
+
             maps.ForEach(map => 
             {
                 Maps.Add(new Map(map));
