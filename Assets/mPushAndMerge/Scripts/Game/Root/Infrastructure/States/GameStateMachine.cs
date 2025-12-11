@@ -10,13 +10,24 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.States
         private readonly Dictionary<Type, IExitableState> _states = new();
         private IExitableState _activeState;
 
-        public GameStateMachine(SceneLoader sceneLoader, UIRootView uiRoot)
+        public GameStateMachine(
+            SceneLoader sceneLoader, 
+            UIRootView uiRoot, 
+            SceneEnterParamsService sceneEnterParamsService)
         {
             _states = new Dictionary<Type, IExitableState>
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader),
-                [typeof(MainMenuState)] = new MainMenuState(this, sceneLoader, uiRoot),
-                [typeof(LoadGameplayState)] = new LoadGameplayState(this, sceneLoader, uiRoot),
+                [typeof(MainMenuState)] = new MainMenuState(
+                    this, 
+                    sceneLoader, 
+                    uiRoot),
+                [typeof(LoadGameplayState)] = new LoadGameplayState(
+                    this, 
+                    sceneLoader, 
+                    uiRoot, 
+                    sceneEnterParamsService
+                    ),
                 [typeof(GameplayLoopState)] = new GameplayLoopState(this),
             };
         }

@@ -12,9 +12,9 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root
     {
         public int MapId { get; }
 
-        public GameplayEnterParams(int levelId) : base(SceneNames.GAMEPLAY)
+        public GameplayEnterParams(int mapId) : base(SceneNames.GAMEPLAY)
         {
-            MapId = levelId;
+            MapId = mapId;
         }
     }
 }

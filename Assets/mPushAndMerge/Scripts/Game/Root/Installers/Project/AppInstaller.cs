@@ -52,6 +52,10 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Installers.Project
                 .Bind<IGameDataProvider>()
                 .To<PlayerPrefsGameDataProvider>()
                 .AsSingle();
+
+            Container
+                .Bind<SceneEnterParamsService>()
+                .AsSingle();
         }
 
         private void BindGameEntryPoint()
