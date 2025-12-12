@@ -43,6 +43,10 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root
         {
             if (_enterParams == null) _enterParams = new GameplayEnterParams(mapId:0);
             var loadedMap = gameDataProxy.Maps.FirstOrDefault(m => m.MapId == _enterParams.MapId);
+            if (loadedMap == null)
+            {
+
+            }
         }
 
         private void AttachSceneUI()

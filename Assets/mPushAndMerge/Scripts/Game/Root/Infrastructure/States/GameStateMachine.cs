@@ -1,4 +1,5 @@
 ﻿
+using Assets.mPushAndMerge.Scripts.Game.Settings;
 using Assets.mPushAndMerge.Scripts.Game.UI;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,12 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.States
         public GameStateMachine(
             SceneLoader sceneLoader, 
             UIRootView uiRoot, 
-            SceneEnterParamsService sceneEnterParamsService)
+            SceneEnterParamsService sceneEnterParamsService,
+            ISettingsProvider settingsProvider)
         {
             _states = new Dictionary<Type, IExitableState>
             {
-                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader),
+                [typeof(BootstrapState)] = new BootstrapState(this, uiRoot, settingsProvider),
                 [typeof(MainMenuState)] = new MainMenuState(
                     this, 
                     sceneLoader, 

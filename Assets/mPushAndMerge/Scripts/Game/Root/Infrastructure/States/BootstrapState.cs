@@ -2,26 +2,35 @@
 using UnityEngine;
 using R3;
 using Assets.mPushAndMerge.Scripts.Game.Common;
+using Assets.mPushAndMerge.Scripts.Game.Settings;
+using Assets.mPushAndMerge.Scripts.Game.UI;
 
 namespace Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.States
 {
     public class BootstrapState : IState
     {
-        private readonly SceneLoader _sceneLoader;
         private readonly GameStateMachine _gameStateMachine;
+        private readonly ISettingsProvider _settingsProvider;
+        private readonly UIRootView _uiRoot;
 
         public BootstrapState(
-            GameStateMachine stateMachine, 
-            SceneLoader sceneLoader)
+            GameStateMachine stateMachine,
+            UIRootView uiRoot,
+            ISettingsProvider settingsProvider)
         {
             _gameStateMachine = stateMachine;
-            _sceneLoader = sceneLoader;
+            _settingsProvider = settingsProvider;
+            _uiRoot = uiRoot;
         }
 
-        public void Enter()
+        public async void Enter()
         {
+            _uiRoot.ShowLoadingScreen();
+
             SetTargetFrameRate();
             SetSleepTimeoutNeverSleep();
+
+            await _settingsProvider.LoadGameSettings();
 
             LoadMainMenuState();
         }

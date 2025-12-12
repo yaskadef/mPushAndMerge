@@ -1,6 +1,7 @@
 ﻿using Assets.mPushAndMerge.Scripts.Game.Data;
 using Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure;
 using Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.States;
+using Assets.mPushAndMerge.Scripts.Game.Settings;
 using Assets.mPushAndMerge.Scripts.Game.UI;
 using Assets.mPushAndMerge.Scripts.Utils.Coroutines;
 using System;
@@ -55,6 +56,11 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Installers.Project
 
             Container
                 .Bind<SceneEnterParamsService>()
+                .AsSingle();
+
+            Container
+                .Bind<ISettingsProvider>()
+                .To<SettingsProvider>()
                 .AsSingle();
         }
 

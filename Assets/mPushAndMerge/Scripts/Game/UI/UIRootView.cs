@@ -14,7 +14,8 @@ namespace Assets.mPushAndMerge.Scripts.Game.UI
 
         public void ShowLoadingScreen()
         {
-            _loadingScreen.SetActive(true);
+            if(!_loadingScreen.activeInHierarchy) 
+                _loadingScreen.SetActive(true);
         }
 
         public void HideLoadingScreen()
