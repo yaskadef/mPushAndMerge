@@ -16,7 +16,13 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities.Mergeable
         public MergeableEntity(MergeableEntityData entityData) : base(entityData)
         {
             Level = new ReactiveProperty<int>(entityData.Level);
+
+            InitLevel();
         }
 
+        private void InitLevel()
+        {
+            Level.Subscribe(lvl => (Origin as MergeableEntityData).Level = lvl);
+        }
     }
 }
