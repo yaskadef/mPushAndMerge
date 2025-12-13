@@ -17,23 +17,17 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root
 
         private UIRootView _uiRoot;
         private IGameDataProvider _gameDataProvider;
-        private GameplayEnterParams _enterParams;
-        private ICommandProcessor _commandProcessor;
+        private GameplayMapInitializer _gameplayMapInitializer;
 
         [Inject]
         public void Construct(
             UIRootView uiRoot, 
             IGameDataProvider gameDataProvider,
-            SceneEnterParamsService sceneEnterParamsService,
-            ICommandProcessor commandProcessor)
+            GameplayMapInitializer gameplayMapInitializer)
         {
             _uiRoot = uiRoot;
             _gameDataProvider = gameDataProvider;
-
-            if(sceneEnterParamsService.SceneEnterParams is GameplayEnterParams enterParams)
-                _enterParams = enterParams;
-
-            _commandProcessor = commandProcessor;
+            _gameplayMapInitializer = gameplayMapInitializer;
         }
 
         private void Awake()
@@ -41,32 +35,8 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root
             _gameDataProvider.LoadGameData().Subscribe(data =>
             {
                 AttachSceneUI();
-                CreateMap(data);
+                _gameplayMapInitializer.Initialize(data);
             });
-        }
-
-        private void CreateMap(GameDataProxy gameDataProxy)
-        {
-            if (_enterParams == null) 
-                _enterParams = new GameplayEnterParams(mapId:0);
-
-            gameDataProxy.CurrentMapId.Value = _enterParams.MapId;
-            
-            var loadedMap = gameDataProxy.Maps.FirstOrDefault(m => m.MapId == _enterParams.MapId);
-            if (loadedMap == null)
-            {
-                Debug.Log("Creating map from settings.");
-                var command = new CmdCreateMap(_enterParams.MapId);
-                _commandProcessor.Process(command);
-
-                loadedMap = gameDataProxy.Maps.First(m => m.MapId == _enterParams.MapId);
-            }
-            else
-            {
-                Debug.Log("Map loaded from PlayerPrefs!");
-            }
-
-
         }
 
         private void AttachSceneUI()
