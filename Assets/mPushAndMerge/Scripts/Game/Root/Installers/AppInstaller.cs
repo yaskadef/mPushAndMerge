@@ -20,26 +20,36 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Installers
             BindGameEntryPoint();
             
             BindGame();
-            BindServices();
             BindStates();
+            BindServices();
 
             BindCoroutines();
             BindUIRoot();
         }
 
-        private void BindUIRoot()
+        private void BindGameEntryPoint()
         {
             Container
-                .Bind<UIRootView>()
-                .FromInstance(_uiRootView)
+                .BindInterfacesAndSelfTo<GameEntryPoint>()
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void BindGame()
+        {
+            Container
+                .Bind<Game>()
                 .AsSingle();
         }
 
-        private void BindCoroutines()
+        private void BindStates()
         {
             Container
-                .Bind<ICoroutineRunner>()
-                .FromInstance(_coroutines)
+                .Bind<GameStateMachine>()
+                .AsSingle();
+
+            Container
+                .Bind<GameStateFactory>()
                 .AsSingle();
         }
 
@@ -59,32 +69,25 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Installers
                 .To<SettingsProvider>()
                 .AsSingle();
 
-            Container.Bind<IMapInitializer>().To<MapInitializer>().AsTransient();
+            Container
+                .Bind<IMapInitializer>()
+                .To<MapInitializer>()
+                .AsTransient();
         }
 
-        private void BindStates()
+        private void BindCoroutines()
         {
             Container
-                .Bind<GameStateMachine>()
+                .Bind<ICoroutineRunner>()
+                .FromInstance(_coroutines)
                 .AsSingle();
-
-            Container
-                .Bind<GameStateFactory>()
-                .AsSingle();
         }
 
-        private void BindGameEntryPoint()
+        private void BindUIRoot()
         {
             Container
-                .BindInterfacesAndSelfTo<GameEntryPoint>()
-                .AsSingle()
-                .NonLazy();
-        }
-
-        private void BindGame()
-        {
-            Container
-                .Bind<Game>()
+                .Bind<UIRootView>()
+                .FromInstance(_uiRootView)
                 .AsSingle();
         }
     }
