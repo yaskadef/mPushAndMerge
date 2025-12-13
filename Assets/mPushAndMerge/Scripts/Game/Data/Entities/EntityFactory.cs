@@ -14,7 +14,11 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities
             switch (entityData.EntityType)
             {
                 case EntityType.Building:
-                    return new BuildingEntity(entityData as BuildingEntityData);
+                    
+                    if (entityData is not BuildingEntityData buildingEntityData)
+                        throw new Exception("Invalid EntityData type");
+                    
+                    return new BuildingEntity(buildingEntityData);
                 default:
                     throw new Exception($"Not supported entity type({entityData.EntityType})");
             }

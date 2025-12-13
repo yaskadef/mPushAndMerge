@@ -14,18 +14,22 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.cmd.Handlers
 {
     public class HandlerPlaceEntity : ICommandHandler<CmdPlaceEntity>
     {
-        private readonly GameDataProxy _gameDataProxy;
+        private readonly IGameDataProvider _gameDataProvider;
 
         public HandlerPlaceEntity(IGameDataProvider gameDataProvider)
         {
-            _gameDataProxy = gameDataProvider.GameData;
+            _gameDataProvider = gameDataProvider;
         }
 
         public bool Handle(CmdPlaceEntity command)
         {
-            var currentMap = _gameDataProxy.CurrentMap;
+            var gameData = _gameDataProvider.GameData;
+            var currentMap = gameData.CurrentMap;
+
+            Debug.Log($"Place Entity, current map id: {currentMap.MapId}");
+
             if (currentMap == null)
-                throw new Exception($"Couldn`t find Map with id: {_gameDataProxy.CurrentMapId}");
+                throw new Exception($"Couldn`t find Map with id: {gameData.CurrentMapId}");
 
             var entityType = command.EntityType;
             var entityData = entityType switch

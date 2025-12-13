@@ -12,10 +12,11 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.cmd
     {
         public CommandRegistrar(
             ICommandProcessor commandProcessor, 
-            ICommandHandler<CmdPlaceEntity> placeEntityHandler)
+            ICommandHandler<CmdPlaceEntity> placeEntityHandler,
+            ICommandHandler<CmdCreateMap> createMapHandler)
         {
-            Debug.Log("CommandRegistrar");
             commandProcessor.RegisterHandler(placeEntityHandler);
+            commandProcessor.RegisterHandler(createMapHandler);
         }
     }
 }

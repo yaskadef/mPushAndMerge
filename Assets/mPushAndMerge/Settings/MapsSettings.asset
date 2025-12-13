@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12186484e52eba942a7f89de3213f7b5, type: 3}
   m_Name: MapsSettings
   m_EditorClassIdentifier: 
-  MapSettings:
+  Maps:
   - {fileID: 11400000, guid: 1062107c2f0380d459588c704014506a, type: 2}
   - {fileID: 11400000, guid: 8d683c45ef31302488e4f1096323e295, type: 2}

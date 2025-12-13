@@ -10,6 +10,6 @@ namespace Assets.mPushAndMerge.Scripts.Game.Settings.Maps
     [CreateAssetMenu(fileName = "MapsSettings", menuName = "Game Settings/Maps/New MapsSettings")]
     public class MapsSettings : ScriptableObject
     {
-        public List<MapSettings> MapSettings;
+        public List<MapSettings> Maps;
     }
 }

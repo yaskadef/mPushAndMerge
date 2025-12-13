@@ -1,4 +1,6 @@
 ﻿using Assets.mPushAndMerge.Scripts.Game.Data.Entities.Mergeable.Buildings;
+using Assets.mPushAndMerge.Scripts.Game.Settings.Entities;
+using Assets.mPushAndMerge.Scripts.Game.Settings.Entities.Mergeable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +11,32 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities
 {
     public static class EntityDataFactory
     {
+        public static EntityData Create(EntityInitialStateSettings initialStateSettings)
+        {
+            switch (initialStateSettings.Type)
+            {
+                case EntityType.Building:
+
+                    if (initialStateSettings is not MergeableEntityInitialStateSettings settings)
+                        throw new Exception("Invalid initial settings type");
+                    
+                    return Create<BuildingEntityData>(
+                        settings.Type, 
+                        settings.ConfigId, 
+                        settings.PositionX, 
+                        settings.PositionY, 
+                        settings.Level);
+                default:
+                    throw new Exception("Not supported EntityType");
+            }
+        }
+
         public static T Create<T>(
             EntityType entityType, 
             string configId, 
             int posX, 
             int posY, 
-            int lvl = 1) where T : EntityData, new()
+            int level = 1) where T : EntityData, new()
         {
             var entityData = new T()
             {
@@ -27,10 +49,10 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities
             switch (entityData)
             {
                 case BuildingEntityData buildingEntityData:
-                    UpdateBuildingEntity(buildingEntityData, lvl);
+                    UpdateBuildingEntity(buildingEntityData, level);
                     break;
                 default:
-                    throw new NotImplementedException();
+                    throw new Exception("Not supported EntityType");
             }
 
             return entityData;
@@ -38,9 +60,9 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities
 
         private static void UpdateBuildingEntity(
             BuildingEntityData entityData, 
-            int lvl) 
+            int level) 
         {
-            entityData.Level = lvl;
+            entityData.Level = level;
         }
     }
 }

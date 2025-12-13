@@ -9,6 +9,6 @@ namespace Assets.mPushAndMerge.Scripts.Game.Settings.Entities.Mergeable
     [Serializable]
     public class MergeableEntityInitialStateSettings : EntityInitialStateSettings
     {
-        public int Level = 1;
+        public int Level;
     }
 }

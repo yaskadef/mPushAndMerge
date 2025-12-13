@@ -20,10 +20,10 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data
             if (PlayerPrefs.HasKey(GAME_DATA_KEY))
             {
                 var json = PlayerPrefs.GetString(GAME_DATA_KEY);
+                Debug.Log($"GameData loaded from PlayerPrefs: {json}");
+
                 _gameDataOrigin = JsonConvert.DeserializeObject<GameData>(json);
                 GameData = new GameDataProxy(_gameDataOrigin);
-
-                Debug.Log($"GameData loaded from PlayerPrefs: {json}");
             }
             else
             {

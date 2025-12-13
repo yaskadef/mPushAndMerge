@@ -33,6 +33,11 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.Installers
                 .Bind<ICommandHandler<CmdPlaceEntity>>()
                 .To<HandlerPlaceEntity>()
                 .AsSingle();
+
+            Container
+                .Bind<ICommandHandler<CmdCreateMap>>()
+                .To<HandlerCreateMap>()
+                .AsSingle();
         }
 
         private void BindCommandRegistrar()
