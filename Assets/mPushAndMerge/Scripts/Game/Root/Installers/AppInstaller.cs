@@ -1,5 +1,4 @@
 ﻿using Assets.mPushAndMerge.Scripts.Game.Data;
-using Assets.mPushAndMerge.Scripts.Game.Data.Root;
 using Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure;
 using Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.States;
 using Assets.mPushAndMerge.Scripts.Game.Settings;
@@ -9,7 +8,7 @@ using System;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.mPushAndMerge.Scripts.Game.Root.Installers.Project
+namespace Assets.mPushAndMerge.Scripts.Game.Root.Installers
 {
     public class AppInstaller : MonoInstaller
     {
@@ -21,8 +20,8 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Installers.Project
             BindGameEntryPoint();
             
             BindGame();
-            BindStates();
             BindServices();
+            BindStates();
 
             BindCoroutines();
             BindUIRoot();
@@ -56,12 +55,21 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Installers.Project
                 .AsSingle();
 
             Container
-                .Bind<SceneEnterParamsService>()
+                .Bind<ISettingsProvider>()
+                .To<SettingsProvider>()
+                .AsSingle();
+
+            Container.Bind<IMapInitializer>().To<MapInitializer>().AsTransient();
+        }
+
+        private void BindStates()
+        {
+            Container
+                .Bind<GameStateMachine>()
                 .AsSingle();
 
             Container
-                .Bind<ISettingsProvider>()
-                .To<SettingsProvider>()
+                .Bind<GameStateFactory>()
                 .AsSingle();
         }
 
@@ -77,13 +85,6 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Installers.Project
         {
             Container
                 .Bind<Game>()
-                .AsSingle();
-        }
-
-        private void BindStates()
-        {
-            Container
-                .Bind<GameStateMachine>()
                 .AsSingle();
         }
     }

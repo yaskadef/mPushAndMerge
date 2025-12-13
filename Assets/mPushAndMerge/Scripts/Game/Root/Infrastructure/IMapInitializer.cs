@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure
 {
-    public class SceneEnterParamsService
+    public interface IMapInitializer
     {
-        public SceneEnterParams SceneEnterParams { get; set; }
+        void Initialize(int mapId);
     }
 }

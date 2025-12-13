@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zenject;
 
-namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.Installers
+namespace Assets.mPushAndMerge.Scripts.Game.Root.Installers
 {
     public class CommandProcessorInstaller : MonoInstaller
     {

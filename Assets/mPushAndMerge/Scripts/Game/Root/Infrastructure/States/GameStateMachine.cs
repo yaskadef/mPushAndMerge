@@ -8,30 +8,13 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.States
 {
     public class GameStateMachine
     {
+        private readonly GameStateFactory _factory;
         private readonly Dictionary<Type, IExitableState> _states = new();
         private IExitableState _activeState;
 
-        public GameStateMachine(
-            SceneLoader sceneLoader, 
-            UIRootView uiRoot, 
-            SceneEnterParamsService sceneEnterParamsService,
-            ISettingsProvider settingsProvider)
+        public GameStateMachine(GameStateFactory factory)
         {
-            _states = new Dictionary<Type, IExitableState>
-            {
-                [typeof(BootstrapState)] = new BootstrapState(this, uiRoot, settingsProvider),
-                [typeof(MainMenuState)] = new MainMenuState(
-                    this, 
-                    sceneLoader, 
-                    uiRoot),
-                [typeof(LoadGameplayState)] = new LoadGameplayState(
-                    this, 
-                    sceneLoader, 
-                    uiRoot, 
-                    sceneEnterParamsService
-                    ),
-                [typeof(GameplayLoopState)] = new GameplayLoopState(this),
-            };
+            _factory = factory;
         }
 
         public void Enter<TState>() where TState : class, IState
@@ -58,10 +41,13 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.States
 
         private TState GetState<TState>() where TState : class, IExitableState
         {
-            if (_states[typeof(TState)] is TState state)
-                return state;
+            if (!_states.TryGetValue(typeof(TState), out var state))
+            {
+                state = _factory.Create<TState>();
+                _states[typeof(TState)] = state;
+            }
 
-            throw new Exception($"Incorrect type state ({typeof(TState)}) in GetState()");
+            return (TState)state;
         }
     }
 } 

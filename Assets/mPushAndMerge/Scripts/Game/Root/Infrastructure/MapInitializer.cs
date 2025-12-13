@@ -1,4 +1,5 @@
-﻿using Assets.mPushAndMerge.Scripts.Game.Data.Root;
+﻿using Assets.mPushAndMerge.Scripts.Game.Data;
+using Assets.mPushAndMerge.Scripts.Game.Data.Root;
 using Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.cmd;
 using Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure;
 using Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.cmd;
@@ -6,24 +7,25 @@ using System.Linq;
 using UnityEngine;
 
 
-namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root
+namespace Assets.mPushAndMerge.Scripts.Game.Root
 {
-    public class GameplayMapInitializer
+    public class MapInitializer : IMapInitializer
     {
-        private readonly SceneEnterParamsService _enterParamsService;
         private readonly ICommandProcessor _commandProcessor;
+        private readonly IGameDataProvider _dataProvider;
 
-        public GameplayMapInitializer(
-            SceneEnterParamsService enterParamsService,
-            ICommandProcessor commandProcessor)
+        public MapInitializer(
+            ICommandProcessor commandProcessor,
+            IGameDataProvider dataProvider)
         {
-            _enterParamsService = enterParamsService;
             _commandProcessor = commandProcessor;
+            _dataProvider = dataProvider;
         }
 
-        public void Initialize(GameDataProxy gameData)
+        public void Initialize(int mapId)
         {
-            var mapId = GetMapIdFromEnterParams();
+            var gameData = _dataProvider.GameData;
+
             gameData.CurrentMapId.Value = mapId;
 
             var loadedMap = gameData.Maps.FirstOrDefault(m => m.MapId == mapId);
@@ -33,11 +35,6 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root
 
                 loadedMap = gameData.Maps.First(m => m.MapId == mapId);
             }
-        }
-
-        private int GetMapIdFromEnterParams()
-        {
-            return _enterParamsService.SceneEnterParams is GameplayEnterParams enterParams ? enterParams.MapId : 0;
         }
     }
 }
