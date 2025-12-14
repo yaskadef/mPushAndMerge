@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Assets.mPushAndMerge.Scripts.Game.Settings.Entities.Mergeable
 {
     [Serializable]
-    public class MergeableEntityInitialStateSettings : EntityInitialStateSettings
+    public class MergeableEntityPlaceSettings : EntityPlaceSettings
     {
         public int Level;
     }

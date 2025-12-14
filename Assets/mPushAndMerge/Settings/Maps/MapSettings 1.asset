@@ -17,12 +17,12 @@ MonoBehaviour:
     Entities: []
     MergeableEntities:
     - ConfigId: cottage
-      Type: 1
+      EntityType: 1
       PositionX: 0
       PositionY: 0
       Level: 1
     - ConfigId: cottage
-      Type: 1
+      EntityType: 1
       PositionX: 0
       PositionY: 1
       Level: 2

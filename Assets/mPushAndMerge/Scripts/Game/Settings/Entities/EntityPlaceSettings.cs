@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace Assets.mPushAndMerge.Scripts.Game.Settings.Entities
 {
     [Serializable]
-    public class EntityInitialStateSettings
+    public class EntityPlaceSettings
     {
         public string ConfigId;
-        public EntityType Type;
+        public EntityType EntityType;
         public int PositionX;
         public int PositionY;
     }

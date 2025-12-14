@@ -11,7 +11,7 @@ namespace Assets.mPushAndMerge.Scripts.Game.Settings.Maps
     [Serializable]
     public class MapInitialStateSettings
     {
-        public List<EntityInitialStateSettings> Entities;
-        public List<MergeableEntityInitialStateSettings> MergeableEntities;
+        public List<EntityPlaceSettings> Entities;
+        public List<MergeableEntityPlaceSettings> MergeableEntities;
     }
 }

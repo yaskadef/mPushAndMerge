@@ -4,6 +4,7 @@ using Assets.mPushAndMerge.Scripts.Game.Data.Root;
 using Assets.mPushAndMerge.Scripts.Game.Data.Root.Maps;
 using Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.cmd;
 using Assets.mPushAndMerge.Scripts.Game.Settings;
+using Assets.mPushAndMerge.Scripts.Game.Settings.Maps;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,33 +32,28 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.cmd.Handlers
             if (isAlreadyExist) 
                 throw new Exception($"Map with id {command.MapId} already exists");
 
+            var targetMapSettings = _settingsProvider.GameSettings
+                .MapsSettings
+                .Maps
+                .First(m => m.MapId == command.MapId);
 
-            var targetMapSettings = _settingsProvider.GameSettings.MapsSettings.Maps.First(m => m.MapId == command.MapId);
-
-            List<EntityData> entityDatas = new List<EntityData>();
-            foreach (var entityInitialSettings in targetMapSettings.InitialState.Entities)
+            List<EntityData> entities = new List<EntityData>();
+            foreach (var entityInitialSettings in targetMapSettings.InitialState.AllEntities())
             {
                 var entityData = EntityDataFactory.Create(entityInitialSettings);
                 entityData.UniqueId = gameData.CreateGlobalEntityId();
                 
-                entityDatas.Add(entityData);
+                entities.Add(entityData);
             }
-
-            foreach (var mergeableEntityInitialSettings in targetMapSettings.InitialState.MergeableEntities)
-            {
-                var entityData = EntityDataFactory.Create(mergeableEntityInitialSettings);
-                entityData.UniqueId = gameData.CreateGlobalEntityId();
-
-                entityDatas.Add(entityData);
-            }
-
 
             var mapData = new MapData
             {
                 MapId = command.MapId,
-                Entities = entityDatas
+                Entities = entities
             };
+
             var map = new Map(mapData);
+
             gameData.Maps.Add(map);
 
             return true;

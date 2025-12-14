@@ -11,58 +11,30 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities
 {
     public static class EntityDataFactory
     {
-        public static EntityData Create(EntityInitialStateSettings initialStateSettings)
+        public static EntityData Create(EntityPlaceSettings placeSettings)
         {
-            switch (initialStateSettings.Type)
+            switch (placeSettings.EntityType)
             {
                 case EntityType.Building:
-
-                    if (initialStateSettings is not MergeableEntityInitialStateSettings settings)
-                        throw new Exception("Invalid initial settings type");
-                    
-                    return Create<BuildingEntityData>(
-                        settings.Type, 
-                        settings.ConfigId, 
-                        settings.PositionX, 
-                        settings.PositionY, 
-                        settings.Level);
+                    return CreateBuilding(placeSettings);
                 default:
-                    throw new Exception("Not supported EntityType");
+                    throw new NotSupportedException($"EntityType {placeSettings.EntityType} is not supported");
             }
         }
 
-        public static T Create<T>(
-            EntityType entityType, 
-            string configId, 
-            int posX, 
-            int posY, 
-            int level = 1) where T : EntityData, new()
+        private static EntityData CreateBuilding(EntityPlaceSettings settings)
         {
-            var entityData = new T()
+            if (settings is not MergeableEntityPlaceSettings mergeableSettings)
+                throw new InvalidOperationException("Building entity requires mergeable settings");
+
+            return new BuildingEntityData
             {
-                EntityType = entityType,
-                ConfigId = configId,
-                PositionX = posX,
-                PositionY = posY,
+                EntityType = EntityType.Building,
+                ConfigId = mergeableSettings.ConfigId,
+                PositionX = mergeableSettings.PositionX,
+                PositionY = mergeableSettings.PositionY,
+                Level = mergeableSettings.Level
             };
-
-            switch (entityData)
-            {
-                case BuildingEntityData buildingEntityData:
-                    UpdateBuildingEntity(buildingEntityData, level);
-                    break;
-                default:
-                    throw new Exception("Not supported EntityType");
-            }
-
-            return entityData;
-        }
-
-        private static void UpdateBuildingEntity(
-            BuildingEntityData entityData, 
-            int level) 
-        {
-            entityData.Level = level;
         }
     }
 }
