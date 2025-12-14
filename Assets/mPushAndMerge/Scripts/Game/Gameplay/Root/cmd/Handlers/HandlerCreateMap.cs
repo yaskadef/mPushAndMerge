@@ -1,6 +1,5 @@
 ﻿using Assets.mPushAndMerge.Scripts.Game.Data;
 using Assets.mPushAndMerge.Scripts.Game.Data.Entities;
-using Assets.mPushAndMerge.Scripts.Game.Data.Root;
 using Assets.mPushAndMerge.Scripts.Game.Data.Root.Maps;
 using Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.cmd;
 using Assets.mPushAndMerge.Scripts.Game.Settings;
@@ -8,8 +7,6 @@ using Assets.mPushAndMerge.Scripts.Game.Settings.Maps;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.cmd.Handlers
 {

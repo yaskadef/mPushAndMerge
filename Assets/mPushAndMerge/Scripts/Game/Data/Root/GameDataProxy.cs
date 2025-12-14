@@ -6,15 +6,11 @@ using System.Linq;
 
 namespace Assets.mPushAndMerge.Scripts.Game.Data.Root
 {
-    public class GameDataProxy : IReadOnlyGameData
+    public class GameDataProxy
     {
         public readonly GameData Origin;
         public readonly ReactiveProperty<int> CurrentMapId;
         public readonly ObservableList<Map> Maps = new();
-
-        ReadOnlyReactiveProperty<int> IReadOnlyGameData.CurrentMapId => CurrentMapId;
-
-        IReadOnlyObservableList<Map> IReadOnlyGameData.Maps => Maps;
 
         public Map CurrentMap
         {

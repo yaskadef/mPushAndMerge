@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities.Mergeable
 {
-    public class MergeableEntity : Entity, IReadOnlyMergeableEntity
+    public class MergeableEntity : Entity
     {
         public readonly ReactiveProperty<int> Level;
-
-        ReadOnlyReactiveProperty<int> IReadOnlyMergeableEntity.Level => Level;
 
         public MergeableEntity(MergeableEntityData entityData) : base(entityData)
         {
