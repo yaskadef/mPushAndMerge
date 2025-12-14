@@ -30,7 +30,17 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities
                 )
             );
 
+            InitPosition();
 
+        }
+
+        private void InitPosition()
+        {
+            Position.Subscribe(pos =>
+            {
+                Origin.PositionX = pos.x;
+                Origin.PositionY = pos.y;
+            });
         }
     }
 }

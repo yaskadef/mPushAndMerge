@@ -2,26 +2,38 @@
 using UnityEngine;
 using R3;
 using Assets.mPushAndMerge.Scripts.Game.Common;
+using Assets.mPushAndMerge.Scripts.Game.Settings;
+using Assets.mPushAndMerge.Scripts.Game.UI;
+using Assets.mPushAndMerge.Scripts.Utils.JsonSerialization;
 
 namespace Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.States
 {
     public class BootstrapState : IState
     {
-        private readonly SceneLoader _sceneLoader;
         private readonly GameStateMachine _gameStateMachine;
+        private readonly UIRootView _uiRoot;
+        private readonly ISettingsProvider _settingsProvider;
 
         public BootstrapState(
-            GameStateMachine stateMachine, 
-            SceneLoader sceneLoader)
+            GameStateMachine stateMachine,
+            UIRootView uiRoot,
+            ISettingsProvider settingsProvider)
         {
             _gameStateMachine = stateMachine;
-            _sceneLoader = sceneLoader;
+            _settingsProvider = settingsProvider;
+            _uiRoot = uiRoot;
         }
 
-        public void Enter()
+        public async void Enter()
         {
+            _uiRoot.ShowLoadingScreen();
+
             SetTargetFrameRate();
             SetSleepTimeoutNeverSleep();
+
+            JsonProjectSettings.ApplyJsonEntityConverterSettings();
+
+            await _settingsProvider.LoadGameSettings();
 
             LoadMainMenuState();
         }

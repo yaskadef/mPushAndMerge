@@ -16,7 +16,7 @@ namespace Assets.mPushAndMerge.Scripts.Utils.JsonSerialization
         public override EntityData ReadJson(JsonReader reader, Type objectType, EntityData existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
             var jsonObject = JObject.Load(reader);
-            var type = jsonObject["Type"].ToObject<EntityType>();
+            var type = jsonObject["EntityType"].ToObject<EntityType>();
 
             return type switch
             {

@@ -25,13 +25,12 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Root.Maps
         {
             entities.ForEach(
                 entityData => Entities.Add(
-                    EntityFactory.Create(entityData)
-                )
-            );
+                    EntityFactory.Create(entityData)));
 
             Entities.ObserveAdd().Subscribe(e =>
             {
                 var newEntity = e.Value;
+                
                 Origin.Entities.Add(newEntity.Origin);
             });
 
@@ -39,6 +38,7 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Root.Maps
             {
                 var removedEntity = e.Value;
                 var removedEntityData = Origin.Entities.FirstOrDefault(ed => ed.UniqueId == removedEntity.UniqueId);
+                
                 Origin.Entities.Remove(removedEntityData);
             });
         }

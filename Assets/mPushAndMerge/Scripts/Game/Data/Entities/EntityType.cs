@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities
 {
-    public enum EntityType
+    public enum EntityType : byte
     {
         Unkown = 0,
         Building = 1,

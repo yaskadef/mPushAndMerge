@@ -1,14 +1,20 @@
-﻿using System;
+﻿using Assets.mPushAndMerge.Scripts.Game.Data;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
+
 
 namespace Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.cmd
 {
     public class CommandProcessor : ICommandProcessor
     {
+        private readonly IGameDataProvider _settingsProvider;
         private readonly Dictionary<Type, object> _handlersMap = new Dictionary<Type, object>();
+
+        public CommandProcessor(IGameDataProvider settingsProvider)
+        {
+            _settingsProvider = settingsProvider;
+        }
 
         public bool Process<TCommand>(TCommand command) where TCommand : ICommand
         {
@@ -20,6 +26,7 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.cmd
 
                     if (result)
                     {
+                        _settingsProvider.SaveGameData();
                         return true;
                     }
                 }

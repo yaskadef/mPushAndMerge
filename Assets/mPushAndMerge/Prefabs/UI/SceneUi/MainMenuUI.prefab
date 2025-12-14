@@ -940,7 +940,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL 1
+  m_text: VILLAGE 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3f58f3534dcd4954bbe294ce25f5fd49, type: 2}
   m_sharedMaterial: {fileID: 402762267035815385, guid: 3f58f3534dcd4954bbe294ce25f5fd49, type: 2}
@@ -1352,7 +1352,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL 2
+  m_text: VILLAGE 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3f58f3534dcd4954bbe294ce25f5fd49, type: 2}
   m_sharedMaterial: {fileID: 402762267035815385, guid: 3f58f3534dcd4954bbe294ce25f5fd49, type: 2}
