@@ -11,17 +11,9 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.View.Buildings
 {
     public class BuildingBinder : MonoBehaviour
     {
-        private BuildingViewModel _viewModel;
-
-        [Inject]
-        public void Construct(BuildingViewModel buildingViewModel)
+        public void Bind(BuildingViewModel buildingViewModel)
         {
-            _viewModel = buildingViewModel;
-        }
-
-        private void Awake()
-        {
-            var position2D = _viewModel.Position.CurrentValue;
+            var position2D = buildingViewModel.Position.CurrentValue;
 
             transform.position = new Vector3(
                 position2D.x * AppConstants.POSITION_COEF,
