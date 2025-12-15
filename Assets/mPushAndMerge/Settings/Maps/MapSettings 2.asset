@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: MapSettings 2
   m_EditorClassIdentifier: 
   MapId: 1
+  MapBorder: 1
   InitialState:
     Entities: []
     MergeableEntities:
     - ConfigId: cottage
       EntityType: 1
       PositionX: 1
-      PositionY: 2
+      PositionY: 1
       Level: 1
     - ConfigId: cottage
       EntityType: 1
       PositionX: -1
-      PositionY: -2
+      PositionY: 0
       Level: 1

@@ -28,6 +28,7 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Services
         private readonly ICommandProcessor _commandProcessor;
         private readonly ISettingsProvider _settingsProvider;
 
+        private IMapPlacement _map;
         private bool isInit;
 
         public BuildingService(
@@ -49,11 +50,13 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Services
             isInit = true;
         }
 
-        public void ConnectToMapEntities(IObservableCollection<Entity> entities)
+        public void ConnectToMap(IMapPlacement map)
         {
             if(!isInit) Init();
 
-            foreach (var entity in entities)
+            _map = map;
+
+            foreach (var entity in _map.Entities)
             {
                 if(entity is BuildingEntity buildingEntity)
                 {
@@ -61,7 +64,7 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Services
                 }
             }
 
-            entities.ObserveAdd().Subscribe(e =>
+            _map.Entities.ObserveAdd().Subscribe(e =>
             {
                 if(e.Value is BuildingEntity buildingEntity)
                 {
@@ -69,7 +72,7 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Services
                 }
             });
 
-            entities.ObserveRemove().Subscribe(e =>
+            _map.Entities.ObserveRemove().Subscribe(e =>
             {
                 if(e.Value is BuildingEntity buildingEntity)
                 {
@@ -80,6 +83,12 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Services
 
         public bool PlaceBuilding(string configId, int posX, int posY, int level)
         {
+            if(!_map.IsPositionAvailable(posX, posY))
+            {
+                Debug.LogWarning($"Position {posX},{posY} is unavailable for placement");
+                return false;
+            }
+
             return _commandProcessor.Process(
                 new CmdPlaceEntity(
                     EntityType.Building, 

@@ -1,4 +1,5 @@
 ﻿using Assets.mPushAndMerge.Scripts.Game.Data.Entities;
+using ObservableCollections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Assets.mPushAndMerge.Scripts.Game.Data.Root.Maps
 {
-    public class MapData
+    public interface IMapPlacement
     {
-        public int MapId { get; set; }
-        public int MapBorder { get; set; }
-        public List<EntityData> Entities;
+        public IObservableCollection<Entity> Entities { get; }
+
+        public bool IsPositionAvailable(int x, int y);
     }
 }

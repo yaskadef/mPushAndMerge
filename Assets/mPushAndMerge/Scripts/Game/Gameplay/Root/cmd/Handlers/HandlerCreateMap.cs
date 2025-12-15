@@ -46,6 +46,7 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.cmd.Handlers
             var mapData = new MapData
             {
                 MapId = command.MapId,
+                MapBorder = targetMapSettings.MapBorder,
                 Entities = entities
             };
 
