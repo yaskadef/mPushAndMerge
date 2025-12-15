@@ -26,17 +26,12 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.View
             _rootViewModel = rootViewModel;
         }
 
-        private void Awake()
-        {
-            InitWorldView();
-        }
-
         private void OnDestroy()
         {
             _disposables.Dispose();
         }
 
-        private void InitWorldView()
+        public void InitWorldView()
         {
             foreach (var building in _rootViewModel.AllBuildings)
             {

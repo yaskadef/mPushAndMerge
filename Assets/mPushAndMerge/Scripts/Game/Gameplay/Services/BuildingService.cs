@@ -12,6 +12,7 @@ using R3;
 using UnityEngine;
 using System;
 using Assets.mPushAndMerge.Scripts.Game.Settings;
+using UnityEditor;
 
 
 namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Services
@@ -23,23 +24,35 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Services
         private readonly ObservableList<BuildingViewModel> _buildingViewModels = new();
         private readonly Dictionary<int, BuildingViewModel> _buildingViewModelsMap = new();
         private readonly Dictionary<string, BuildingSettings> _buildingsSettingsMap = new();
+        
         private readonly ICommandProcessor _commandProcessor;
+        private readonly ISettingsProvider _settingsProvider;
+
+        private bool isInit;
 
         public BuildingService(
             ISettingsProvider settingsProvider,
             ICommandProcessor commandProcessor)
         {
             _commandProcessor = commandProcessor;
+            _settingsProvider = settingsProvider;
+        }
 
-            foreach (var buildingSettings in 
-                settingsProvider.GameSettings.EntitiesSettings.Buildings)
+        public void Init()
+        {
+            foreach (var buildingSettings in
+                _settingsProvider.GameSettings.EntitiesSettings.Buildings)
             {
                 _buildingsSettingsMap[buildingSettings.ConfigId] = buildingSettings;
             }
+
+            isInit = true;
         }
 
         public void ConnectToMapEntities(IObservableCollection<Entity> entities)
         {
+            if(!isInit) Init();
+
             foreach (var entity in entities)
             {
                 if(entity is BuildingEntity buildingEntity)
