@@ -22,7 +22,8 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root
             IMapInitializer mapInitializer,
             WorldGameplayRootBinder worldRootBinder,
             SceneAttacherUI sceneAttacherUI,
-            SceneEnterParams p)
+            SceneEnterParams p //Bind in SceneLoader.LoadScene()
+            )
         {
             _dataProvider = dataProvider;
             _mapInitializer = mapInitializer;
