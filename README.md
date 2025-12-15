@@ -1,6 +1,6 @@
 Project code starts executing from GameEntryPoint.
 
-##Implemented:
+Implemented:
 
 - State machine
 - Scene management with parameters
