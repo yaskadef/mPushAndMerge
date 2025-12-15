@@ -24,7 +24,7 @@ public class Tester : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            var command = new CmdPlaceEntity(EntityType.Building, "cottage", 3, 3, 3);
+            var command = new CmdPlaceEntity(EntityType.Building, "cottage", -1, -1, 3);
             _commandProcessor.Process(command);
         }
     }

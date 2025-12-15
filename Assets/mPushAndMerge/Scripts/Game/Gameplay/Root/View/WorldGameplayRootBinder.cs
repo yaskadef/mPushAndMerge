@@ -13,6 +13,8 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.View
 {
     public class WorldGameplayRootBinder : MonoBehaviour
     {
+        [SerializeField] private Transform entitiesContainer;
+
         private WorldGameplayRootViewModel _rootViewModel;
 
         private Dictionary<int, BuildingBinder> _buildingBindersMap = new();
@@ -58,7 +60,7 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.View
         {
             //TODO PoolMono
             var buildingBinder = Instantiate(
-                Resources.Load<BuildingBinder>(building.GetCurrentLevelSettings().PrefabSkinPath));
+                Resources.Load<BuildingBinder>(building.GetCurrentLevelSettings().PrefabSkinPath), entitiesContainer);
 
             buildingBinder.Bind(building);
 
