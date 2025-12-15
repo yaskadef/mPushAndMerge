@@ -1,5 +1,7 @@
-﻿using Assets.mPushAndMerge.Scripts.Game.Gameplay.Services;
+﻿using Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.View;
+using Assets.mPushAndMerge.Scripts.Game.Gameplay.Services;
 using Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -11,6 +13,7 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.Installers
         {
             BindGameplayEntryPoint();
             BindServices();
+            BindView();
         }
 
         private void BindGameplayEntryPoint()
@@ -32,5 +35,13 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.Installers
                 .Bind<BuildingService>()
                 .AsSingle();
         }
+
+        private void BindView()
+        {
+            Container
+                .Bind<WorldGameplayRootViewModel>()
+                .AsSingle();
+        }
+
     }
 }
