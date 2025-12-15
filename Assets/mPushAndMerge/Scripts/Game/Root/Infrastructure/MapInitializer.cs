@@ -2,13 +2,12 @@
 using Assets.mPushAndMerge.Scripts.Game.Data.Root;
 using Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.cmd;
 using Assets.mPushAndMerge.Scripts.Game.Gameplay.Services;
-using Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure;
 using Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.cmd;
 using System.Linq;
 using UnityEngine;
 
 
-namespace Assets.mPushAndMerge.Scripts.Game.Root
+namespace Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure
 {
     public class MapInitializer : IMapInitializer
     {
@@ -38,7 +37,7 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root
                 _commandProcessor.Process(new CmdCreateMap(mapId));
 
                 loadedMap = gameData.Maps.First(m => m.MapId == mapId);
-                _buildingService.ConnectToMapEntities(loadedMap.Entities);
+                //_buildingService.ConnectToMapEntities(loadedMap.Entities);
             }
         }
     }

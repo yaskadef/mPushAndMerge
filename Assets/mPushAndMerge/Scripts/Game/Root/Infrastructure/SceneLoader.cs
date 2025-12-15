@@ -21,7 +21,7 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure
             _coroutineRunner = coroutineRunner;
         }
 
-        public Observable<Unit> LoadScene(string sceneName, GameplayEnterParams enterParams = null)
+        public Observable<Unit> LoadScene(string sceneName, SceneEnterParams enterParams = null)
         {
             var endLoading = new Subject<Unit>();
 

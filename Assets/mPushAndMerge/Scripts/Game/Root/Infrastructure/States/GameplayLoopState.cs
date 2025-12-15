@@ -9,26 +9,21 @@ using UnityEngine;
 
 namespace Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.States
 {
-    public class GameplayLoopState : IPayloadedState<GameplayEnterParams>
+    public class GameplayLoopState : IState
     {
         private readonly GameStateMachine _gameStateMachine;
-        private readonly IMapInitializer _mapInitializer;
         private readonly UIRootView _uiRoot;
 
         public GameplayLoopState(
             GameStateMachine gameStateMachine,
-            UIRootView uiRoot,
-            IMapInitializer mapInitializer)
+            UIRootView uiRoot)
         {
             _gameStateMachine = gameStateMachine;
-            _mapInitializer = mapInitializer;
             _uiRoot = uiRoot;
         }
 
-
-        public void Enter(GameplayEnterParams payload)
+        public void Enter()
         {
-            _mapInitializer.Initialize(payload.MapId);
             _uiRoot.HideLoadingScreen();
         }
 

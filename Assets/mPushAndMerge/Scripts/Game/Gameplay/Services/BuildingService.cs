@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using R3;
 using UnityEngine;
 using System;
+using Assets.mPushAndMerge.Scripts.Game.Settings;
 
 
 namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Services
@@ -25,12 +26,13 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Services
         private readonly ICommandProcessor _commandProcessor;
 
         public BuildingService(
-            EntitiesSettings entitiesSettings,
+            ISettingsProvider settingsProvider,
             ICommandProcessor commandProcessor)
         {
             _commandProcessor = commandProcessor;
 
-            foreach (var buildingSettings in entitiesSettings.Buildings)
+            foreach (var buildingSettings in 
+                settingsProvider.GameSettings.EntitiesSettings.Buildings)
             {
                 _buildingsSettingsMap[buildingSettings.ConfigId] = buildingSettings;
             }

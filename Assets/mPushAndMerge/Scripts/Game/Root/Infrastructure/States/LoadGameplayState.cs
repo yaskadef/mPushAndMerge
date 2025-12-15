@@ -11,41 +11,25 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure.States
         private readonly GameStateMachine _gameStateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly UIRootView _uiRoot;
-        private readonly IGameDataProvider _gameDataProvider;
 
         public LoadGameplayState(
             GameStateMachine stateMachine, 
             SceneLoader sceneLoader,
-            UIRootView uiRootView,
-            IGameDataProvider gameDataProvider)
+            UIRootView uiRootView)
         {
             _gameStateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _uiRoot = uiRootView;
-            _gameDataProvider = gameDataProvider;
         }
 
         public void Enter(GameplayEnterParams payload)
         {
             _uiRoot.ShowLoadingScreen();
 
-            _sceneLoader.LoadScene(payload.SceneName).Subscribe(_ =>
+            _sceneLoader.LoadScene(payload.SceneName, payload).Subscribe(_ =>
             {
-                LoadData(payload);
+                _gameStateMachine.Enter<GameplayLoopState>();
             });
-        }
-
-        private void LoadData(GameplayEnterParams enterParams)
-        {
-            _gameDataProvider.LoadGameData().Subscribe(_ =>
-            {
-                EnterGameplayLoopState(enterParams);
-            });
-        }
-
-        private void EnterGameplayLoopState(GameplayEnterParams enterParams)
-        {
-            _gameStateMachine.Enter<GameplayLoopState, GameplayEnterParams>(enterParams);
         }
 
         public void Exit()
