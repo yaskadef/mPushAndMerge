@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities
 {
-    public class Entity : IReadOnlyEntity
+    public class Entity
     {
         public EntityData Origin { get;}
 
@@ -17,7 +17,6 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Entities
         public int UniqueId => Origin.UniqueId;
         public string ConfigId => Origin.ConfigId;
         public EntityType EntityType => Origin.EntityType;
-        ReadOnlyReactiveProperty<Vector2Int> IReadOnlyEntity.Position => Position;
 
         public Entity(EntityData entityData)
         {

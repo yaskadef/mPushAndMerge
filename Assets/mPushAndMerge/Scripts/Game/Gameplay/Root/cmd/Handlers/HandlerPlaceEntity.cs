@@ -38,10 +38,6 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.cmd.Handlers
             var entity = EntityFactory.Create(entityData);
 
             currentMap.Entities.Add(entity);
-            foreach (var ent in currentMap.Entities)
-            {
-                Debug.Log(ent.ConfigId);
-            }
 
             return true;
         }

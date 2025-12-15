@@ -16,12 +16,7 @@ namespace Assets.mPushAndMerge.Scripts.Game.UI
             _uiRoot = uiRoot;
         }
 
-        private void Awake()
-        {
-            AttachSceneUI();
-        }
-
-        private void AttachSceneUI()
+        public void AttachSceneUI()
         {
             _uiRoot.AttachSceneUI(_sceneUI);
         }

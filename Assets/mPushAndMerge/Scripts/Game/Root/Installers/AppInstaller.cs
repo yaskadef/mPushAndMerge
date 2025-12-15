@@ -30,7 +30,7 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Installers
         private void BindGameEntryPoint()
         {
             Container
-                .BindInterfacesAndSelfTo<GameEntryPoint>()
+                .BindInterfacesTo<GameEntryPoint>()
                 .AsSingle()
                 .NonLazy();
         }
@@ -68,11 +68,6 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Installers
                 .Bind<ISettingsProvider>()
                 .To<SettingsProvider>()
                 .AsSingle();
-
-            Container
-                .Bind<IMapInitializer>()
-                .To<MapInitializer>()
-                .AsTransient();
         }
 
         private void BindCoroutines()

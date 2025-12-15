@@ -6,13 +6,12 @@ using System.Linq;
 
 namespace Assets.mPushAndMerge.Scripts.Game.Data.Root.Maps
 {
-    public class Map : IReadOnlyMap
+    public class Map
     {
         public readonly MapData Origin;
         public ObservableList<Entity> Entities = new();
 
         public int MapId => Origin.MapId;
-        IReadOnlyObservableList<Entity> IReadOnlyMap.Entities => Entities;
 
         public Map(MapData mapData)
         {
