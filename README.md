@@ -1,4 +1,4 @@
-Project code starts executing from GameplayEntryPoint.
+Project code starts executing from GameEntryPoint.
 
 ##Implemented:
 
