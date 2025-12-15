@@ -31,12 +31,6 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.cmd.Handlers
             var currentMap = gameData.CurrentMap 
                 ?? throw new InvalidOperationException($"CurrentMap not found");
 
-            if(!currentMap.IsPositionAvailable(command.PositionX, command.PositionY))
-            {
-                Debug.LogWarning($"Position {command.PositionX},{command.PositionY} is unavailable for placement");
-                return false;
-            }
-
             var settings = CreatePlaceSettings(command);
 
             var entityData = EntityDataFactory.Create(settings);

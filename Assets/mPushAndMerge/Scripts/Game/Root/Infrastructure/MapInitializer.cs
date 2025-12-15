@@ -39,7 +39,7 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure
                 loadedMap = gameData.Maps.First(m => m.MapId == mapId);
             }
 
-            _buildingService.ConnectToMapEntities(loadedMap.Entities);
+            _buildingService.ConnectToMap(loadedMap);
         }
     }
 }

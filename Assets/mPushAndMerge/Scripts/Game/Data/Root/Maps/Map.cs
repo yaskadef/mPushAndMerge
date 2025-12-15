@@ -8,10 +8,12 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Assets.mPushAndMerge.Scripts.Game.Data.Root.Maps
 {
-    public class Map
+    public class Map : IMapPlacement
     {
         public readonly MapData Origin;
-        public ObservableList<Entity> Entities = new();
+        
+        public readonly ObservableList<Entity> Entities = new();
+        IObservableCollection<Entity> IMapPlacement.Entities => Entities;
 
         public int MapId => Origin.MapId;
         public int MapBorder => Origin.MapBorder;
