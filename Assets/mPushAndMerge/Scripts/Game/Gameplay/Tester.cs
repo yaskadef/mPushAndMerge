@@ -12,19 +12,19 @@ public class Tester : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            var command = new CmdPlaceEntity(EntityType.Building, "test", 1,1, 1);
+            var command = new CmdPlaceEntity(EntityType.Building, "cottage", 1,1, 1);
             _commandProcessor.Process(command);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            var command = new CmdPlaceEntity(EntityType.Building, "test2", 2, 2, 2);
+            var command = new CmdPlaceEntity(EntityType.Building, "cottage", 2, 2, 2);
             _commandProcessor.Process(command);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            var command = new CmdPlaceEntity(EntityType.Building, "test3", 3, 3, 3);
+            var command = new CmdPlaceEntity(EntityType.Building, "cottage", 3, 3, 3);
             _commandProcessor.Process(command);
         }
     }

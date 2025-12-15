@@ -37,8 +37,9 @@ namespace Assets.mPushAndMerge.Scripts.Game.Root.Infrastructure
                 _commandProcessor.Process(new CmdCreateMap(mapId));
 
                 loadedMap = gameData.Maps.First(m => m.MapId == mapId);
-                //_buildingService.ConnectToMapEntities(loadedMap.Entities);
             }
+
+            _buildingService.ConnectToMapEntities(loadedMap.Entities);
         }
     }
 }
