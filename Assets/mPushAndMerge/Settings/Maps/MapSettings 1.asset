@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MapSettings 1
   m_EditorClassIdentifier: 
   MapId: 0
+  MapBorder: 1
   InitialState:
     Entities: []
     MergeableEntities:

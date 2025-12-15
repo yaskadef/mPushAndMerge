@@ -12,19 +12,37 @@ public class Tester : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            var command = new CmdPlaceEntity(EntityType.Building, "cottage", 1,1, 1);
+            var command = new CmdPlaceEntity(
+                EntityType.Building, 
+                configId: "cottage", 
+                posX: 1, 
+                posY: -1, 
+                level: 1);
+
             _commandProcessor.Process(command);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            var command = new CmdPlaceEntity(EntityType.Building, "cottage", 2, 2, 2);
+            var command = new CmdPlaceEntity(
+                EntityType.Building, 
+                configId: "cottage", 
+                posX: -1, 
+                posY: -1, 
+                level: 2);
+
             _commandProcessor.Process(command);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            var command = new CmdPlaceEntity(EntityType.Building, "cottage", -1, -1, 3);
+            var command = new CmdPlaceEntity(
+                EntityType.Building, 
+                configId: "cottage", 
+                posX: 1, 
+                posY: 0, 
+                level: 3);
+
             _commandProcessor.Process(command);
         }
     }

@@ -11,6 +11,7 @@ namespace Assets.mPushAndMerge.Scripts.Game.Settings.Maps
     public class MapSettings : ScriptableObject
     {
         public int MapId;
+        public int MapBorder;
         public MapInitialStateSettings InitialState;
     }
 }

@@ -10,6 +10,7 @@ namespace Assets.mPushAndMerge.Scripts.Game.Data.Root.Maps
     public class MapData
     {
         public int MapId { get; set; }
+        public int MapBorder { get; set; }
         public List<EntityData> Entities;
     }
 }

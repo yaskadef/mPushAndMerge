@@ -21,13 +21,13 @@ namespace Assets.mPushAndMerge.Scripts.Game.Gameplay.Root.cmd
             string configId, 
             int posX, 
             int posY, 
-            int lvl = 1)
+            int level = 1)
         {
             EntityType = entityType;
             ConfigId = configId;
             PositionX = posX;
             PositionY = posY;
-            Level = lvl;
+            Level = level;
         }
     }
 }
