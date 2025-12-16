@@ -1,6 +1,21 @@
-Project code starts executing from GameEntryPoint.
+## Packages used: 
+- Extenject
+- R3(ObservableCollections, ObservableCollections.R3, R3)
+install: https://github.com/Cysharp/R3
+- Newtonsoft.Json - install from NuGet
 
-Implemented:
+## Project structure
+Project code execution starts with **GameEntryPoint**.
+GameStateMachine controls the application states change.
+Project has 3 scenes: Boot, MainMenu, Gameplay.
+For MainMenu scene there is MainMenuEntryPoint.
+For Gameplay scene there is GameplayEntryPoint.
+
+Main UI of project is UIRootView.
+MainMenuUI and GameplayUI are connected to UIRootView using SceneAttacherUI.
+MainMenuUI and GameplayUI prefabs are located in the Assets/mPushAndMerge/Prefabs/UI/SceneUI/
+
+## Implemented:
 
 - State machine
 - Scene management with parameters
@@ -8,5 +23,5 @@ Implemented:
 - Content settings
 - Command processor
 - Initialization of maps from settings
-- Placement of buildings
+- User placement of buildings
 - Saving and loading of game data
